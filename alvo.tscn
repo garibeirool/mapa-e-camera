@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3rmwk623stej"]
+
+[ext_resource type="Script" uid="uid://bifa06lfglkbp" path="res://alvo.gd" id="1_q2vq5"]
+[ext_resource type="Texture2D" uid="uid://bfo34y4og08u0" path="res://arte/Tilemap/tilemap_packed.png" id="2_npyt8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cu02"]
+atlas = ExtResource("2_npyt8")
+region = Rect2(128, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g0ueq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cu02")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i2q6b"]
+
+[node name="Alvo" type="Area2D"]
+script = ExtResource("1_q2vq5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g0ueq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_i2q6b")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "PARABENS!!
+"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
